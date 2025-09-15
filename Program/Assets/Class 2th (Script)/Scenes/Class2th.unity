@@ -200,6 +200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feda1058d76b5ce4583f00994805d320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    strength: 5
+    intelligence: 10
+    dexterity: 5
+    wisdom: 1
 --- !u!1 &1909955587
 GameObject:
   m_ObjectHideFlags: 0
