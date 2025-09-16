@@ -4,7 +4,7 @@ public class ItemManager : MonoBehaviour
 {
     [SerializeField] Item [] items;
 
-    private int count = 0;
+    [SerializeField] int count = 0;
 
     void Start()
     {
@@ -13,7 +13,18 @@ public class ItemManager : MonoBehaviour
 
     void Update()
     {
-        Swap();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Swap();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (items[count].gameObject.activeSelf == true)
+            {
+                items[count].Activate();
+            }
+        }
     }
 
     private void Initialize()
@@ -25,22 +36,11 @@ public class ItemManager : MonoBehaviour
     }
 
     private void Swap()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            items[count++].gameObject.SetActive(false);
+    {      
+        items[count].gameObject.SetActive(false);
 
-            count %= items.Length;
+        count = (count + 1) % items.Length;
 
-            items[count].gameObject.SetActive(true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (items[count].gameObject.activeSelf == true)
-            {
-                items[count].Activate();
-            }
-        }
+        items[count].gameObject.SetActive(true);
     }
 }
