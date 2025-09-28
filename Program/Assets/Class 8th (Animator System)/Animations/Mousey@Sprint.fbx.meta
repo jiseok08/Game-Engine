@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 859c4bfde85a0cb4cae3f67dc94756a7
+guid: 35afb9e3f62e61c45be8d5f8ceb35ab4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk
+      name: Sprint
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 27
+      lastFrame: 16
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
