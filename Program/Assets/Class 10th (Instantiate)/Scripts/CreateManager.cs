@@ -12,6 +12,7 @@ public class CreateManager : MonoBehaviour
 
     [SerializeField] GameObject prefab;
     [SerializeField] List<GameObject> list;
+    [SerializeField] List<Vector3> randomPosition;
 
     void Start()
     {
@@ -36,16 +37,18 @@ public class CreateManager : MonoBehaviour
     {
         while (coroutineCount < list.Count)
         {
-            int index = Random.Range(0, list.Count);
-
             yield return new WaitForSeconds(5f);
 
-            if (list[index].activeSelf)
+            int index = Random.Range(0, list.Count);
+
+            while (list[index].activeSelf)
             {
                 index = (index + 1) % list.Count;
             }
 
             list[index].SetActive(true);
+
+            list[index].transform.localPosition = randomPosition[index];
 
             coroutineCount++;
         }
