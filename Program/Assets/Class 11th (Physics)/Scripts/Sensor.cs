@@ -1,13 +1,16 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Sensor: MonoBehaviour
 {
-    [SerializeField] Rigidbody rigidBody;
     [SerializeField] float upspeed;
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Enter");
+        if (other.CompareTag("Authorize"))
+        {
+            other.GetComponent<Control>().Soar();
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -16,7 +19,10 @@ public class Sensor: MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Trigger Exit");
+        if (other.CompareTag("Authorize"))
+        {
+            other.GetComponent<Control>().Revert();
+        }
     }
 
 

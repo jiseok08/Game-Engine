@@ -6,12 +6,11 @@ public class Control : MonoBehaviour
     [SerializeField] Vector3 direction;
     [SerializeField] Rigidbody rigidBody;
 
-    float horizontal;
-    float vertical;
-
+    [SerializeField] ForceMode forceMode;
 
     void Awake()
     {
+        forceMode = ForceMode.Force;
         rigidBody = GetComponent<Rigidbody>();
     }
     private void Update()
@@ -22,8 +21,24 @@ public class Control : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidBody.AddForce(direction * speed, ForceMode.Force);
+        rigidBody.AddForce(direction * speed, forceMode);
     }
 
+    public void Soar()
+    {
+        speed  = 0.5f;
 
+        direction = Vector3.up;
+
+        forceMode = ForceMode.Impulse;
+    }
+
+    public void Revert()
+    {
+        speed = 5.0f;
+
+        direction = Vector3.zero;
+
+        forceMode = ForceMode.Force;
+    }
 }
