@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -6,6 +7,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] float distance;
     [SerializeField] Texture2D texture2D;
     [SerializeField] RaycastHit rayCastHit;
+    [SerializeField] LayerMask layerMask;
+
+    [SerializeField] Encampment encampment;
+
+    [SerializeField] Manual manual;
 
     private void Awake()
     {
@@ -22,11 +28,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
             Debug.DrawRay(ray.origin, ray.direction * distance, Color.green);
 
-            if(Physics.Raycast(ray, out rayCastHit, 100))
+            if(Physics.Raycast(ray, out rayCastHit, 100, layerMask))
             {
-                Debug.Log(rayCastHit.collider.name);
-
                 Debug.DrawLine(ray.origin, rayCastHit.point, Color.red);
+
+                if (rayCastHit.collider.TryGetComponent<Encampment>(out encampment))
+                {
+                    manual.Bind(encampment.Title, encampment.Description);
+                }
+
+                rayCastHit.collider.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
